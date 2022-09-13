@@ -1,0 +1,19 @@
+{
+  "name": "socialneter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilyerose/socialNetER.git"
+  },
+  "author": "Emily Rose",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emilyerose/socialNetER/issues"
+  },
+  "homepage": "https://github.com/emilyerose/socialNetER#readme"
+}
