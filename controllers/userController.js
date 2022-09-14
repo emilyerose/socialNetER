@@ -30,9 +30,35 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
-          : Reaction.deleteMany({ _id: { $in: user.reactions } })
+          : Reaction.deleteMany({ _id: { $in: user.thoughts } })
       )
-      .then(() => res.json({ message: 'User and associated reactions deleted!' }))
+      .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
+      .catch((err) => res.status(500).json(err));
+  },
+  createFriend(req,res) {
+    User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $addToSet: { /*somehow need to find a user object b friend id and then add it here i think */ } },
+        { runValidators: true, new: true }
+      )
+        .then((application) =>
+          !application
+            ? res.status(404).json({ message: 'No user with this id!' })
+            : res.json(application)
+        )
+        .catch((err) => res.status(500).json(err));
+  },
+  deleteFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: { userId: req.params.friendId } } },
+    )
+      .then((application) =>
+        !application
+          ? res.status(404).json({ message: 'No user with this id!' })
+          : res.json(application)
+      )
       .catch((err) => res.status(500).json(err));
   },
 };
+
